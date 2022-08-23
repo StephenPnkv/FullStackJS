@@ -1,5 +1,8 @@
 import User from '../models/user.model.js';
 import extended from 'lodash/extend.js';
+import errorHandler from './error.controller.js';
+
+
 
 const create = async (req, res) => {
 	const user = new User(req.body);
@@ -14,3 +17,21 @@ const create = async (req, res) => {
 		});
 	}
 }
+
+const list = async (req, res) => {
+	try{
+		let users = await User.find().select('name email updated created')
+		res.json(users)
+
+	}catch(err){
+		return res.status(200).json({
+			error: errorHandler.getErrorMessage(err)
+		})
+	}
+}
+const userByID = (req, res, next, id) => {}  
+const read = (req, res) => {}
+const update = (req, res, next) => {} 
+const remove = (req, res, next) => {}
+
+export default { create, userByID, read, list, remove, update }
