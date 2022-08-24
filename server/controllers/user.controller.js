@@ -1,6 +1,6 @@
 import User from '../models/user.model.js';
 import extended from 'lodash/extend.js';
-import errorHandler from './error.controller.js';
+import errorHandler from './../helpers/dbErrorHandler.js';
 
 
 
